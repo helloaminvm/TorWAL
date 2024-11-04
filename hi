@@ -1,0 +1,23 @@
+windowmanager.cpp:563:48: error: invalid initialization of reference of type 'const WId&' {aka 'const long long unsigned int&'} from expression of type 'QString'
+  563 |     for (const WId &key : existingWindows.keys()) {
+      |                                                ^
+windowmanager.cpp:570:32: error: invalid user-defined conversion from 'const WId' {aka 'const long long unsigned int'} to 'const QString&' [-fpermissive]
+  570 |         existingWindows.remove(key);
+      |                                ^~~
+In file included from ../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qobject.h:47,
+                 from ../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qiodevice.h:45,
+                 from ../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qtextstream.h:43:
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qstring.h:832:31: note: candidate is: 'QString::QString(const char*)' (near match)
+  832 |     inline QT_ASCII_CAST_WARN QString(const char *ch)
+      |                               ^~~~~~~
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qstring.h:832:31: note:   conversion of argument 1 would be ill-formed:
+windowmanager.cpp:570:32: error: invalid conversion from 'WId' {aka 'long long unsigned int'} to 'const char*' [-fpermissive]
+  570 |         existingWindows.remove(key);
+      |                                ^~~
+      |                                |
+      |                                WId {aka long long unsigned int}
+windowmanager.cpp:570:32: error: invalid conversion from 'WId' {aka 'long long unsigned int'} to 'const char*' [-fpermissive]
+  570 |         existingWindows.remove(key);
+      |                                ^~~
+      |                                |
+      |                                WId {aka long long unsigned int}
