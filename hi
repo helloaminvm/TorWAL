@@ -1,23 +1,146 @@
-windowmanager.cpp:563:48: error: invalid initialization of reference of type 'const WId&' {aka 'const long long unsigned int&'} from expression of type 'QString'
-  563 |     for (const WId &key : existingWindows.keys()) {
-      |                                                ^
-windowmanager.cpp:570:32: error: invalid user-defined conversion from 'const WId' {aka 'const long long unsigned int'} to 'const QString&' [-fpermissive]
-  570 |         existingWindows.remove(key);
-      |                                ^~~
-In file included from ../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qobject.h:47,
-                 from ../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qiodevice.h:45,
-                 from ../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qtextstream.h:43:
-../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qstring.h:832:31: note: candidate is: 'QString::QString(const char*)' (near match)
-  832 |     inline QT_ASCII_CAST_WARN QString(const char *ch)
-      |                               ^~~~~~~
-../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qstring.h:832:31: note:   conversion of argument 1 would be ill-formed:
-windowmanager.cpp:570:32: error: invalid conversion from 'WId' {aka 'long long unsigned int'} to 'const char*' [-fpermissive]
-  570 |         existingWindows.remove(key);
-      |                                ^~~
-      |                                |
-      |                                WId {aka long long unsigned int}
-windowmanager.cpp:570:32: error: invalid conversion from 'WId' {aka 'long long unsigned int'} to 'const char*' [-fpermissive]
-  570 |         existingWindows.remove(key);
-      |                                ^~~
-      |                                |
-      |                                WId {aka long long unsigned int}
+taskbar.cpp: In member function 'void TaskBar::addWindowToTaskbar(QWindow*)':
+taskbar.cpp:138:16: error: no matching function for call to 'TaskBar::connect(QWindow*&, void (QObject::*)(QObject*), TaskBar*, TaskBar::addWindowToTaskbar(QWindow*)::<lambda()>)'
+  138 |         connect(window, &QObject::destroyed, this, [this, window]() {
+      |         ~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  139 |             openWindows.removeAll(window);
+      |             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  140 |             updateTaskbarItems();
+      |             ~~~~~~~~~~~~~~~~~~~~~
+  141 |         });
+      |         ~~      
+In file included from ../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtWidgets/qwidget.h:45,
+                 from ../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtWidgets/QWidget:1,
+                 from taskbar.h:4,
+                 from taskbar.cpp:1:
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qobject.h:242:43: note: candidate: 'template<class Func1, class Func2> static QMetaObject::Connection QObject::connect(const typename QtPrivate::FunctionPointer<Func>::Object*, Func1, const typename QtPrivate::FunctionPointer<Func2>::Object*, Func2, Qt::ConnectionType)'
+  242 |     static inline QMetaObject::Connection connect(const typename QtPrivate::FunctionPointer<Func1>::Object *sender, Func1 signal,
+      |                                           ^~~~~~~
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qobject.h:242:43: note:   template argument deduction/substitution failed:
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qobject.h: In substitution of 'template<class Func1, class Func2> static QMetaObject::Connection QObject::connect(const typename QtPrivate::FunctionPointer<Func>::Object*, Func1, const typename QtPrivate::FunctionPointer<Func2>::Object*, Func2, Qt::ConnectionType) [with Func1 = void (QObject::*)(QObject*); Func2 = TaskBar::addWindowToTaskbar(QWindow*)::<lambda()>]':
+taskbar.cpp:138:16:   required from here
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qobject.h:242:43: error: no type named 'Object' in 'struct QtPrivate::FunctionPointer<TaskBar::addWindowToTaskbar(QWindow*)::<lambda()> >'
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qobject.h:274:13: note: candidate: 'template<class Func1, class Func2> static typename std::enable_if<((int)(QtPrivate::FunctionPointer<Func2>::ArgumentCount) >= 0), QMetaObject::Connection>::type QObject::connect(const typename QtPrivate::FunctionPointer<Func>::Object*, Func1, Func2)'
+  274 |             connect(const typename QtPrivate::FunctionPointer<Func1>::Object *sender, Func1 signal, Func2 slot)
+      |             ^~~~~~~
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qobject.h:274:13: note:   template argument deduction/substitution failed:
+taskbar.cpp:138:16: note:   candidate expects 3 arguments, 4 provided
+  138 |         connect(window, &QObject::destroyed, this, [this, window]() {
+      |         ~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  139 |             openWindows.removeAll(window);
+      |             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  140 |             updateTaskbarItems();
+      |             ~~~~~~~~~~~~~~~~~~~~~
+  141 |         });
+      |         ~~      
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qobject.h:283:13: note: candidate: 'template<class Func1, class Func2> static typename std::enable_if<(((int)(QtPrivate::FunctionPointer<Func2>::ArgumentCount) >= 0) && (! QtPrivate::FunctionPointer<Func2>::IsPointerToMemberFunction)), QMetaObject::Connection>::type QObject::connect(const typename QtPrivate::FunctionPointer<Func>::Object*, Func1, const QObject*, Func2, Qt::ConnectionType)'
+  283 |             connect(const typename QtPrivate::FunctionPointer<Func1>::Object *sender, Func1 signal, const QObject *context, Func2 slot,
+      |             ^~~~~~~
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qobject.h:283:13: note:   template argument deduction/substitution failed:
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qobject.h: In substitution of 'template<class Func1, class Func2> static typename std::enable_if<(((int)(QtPrivate::FunctionPointer<Func2>::ArgumentCount) >= 0) && (! QtPrivate::FunctionPointer<Func2>::IsPointerToMemberFunction)), QMetaObject::Connection>::type QObject::connect(const typename QtPrivate::FunctionPointer<Func>::Object*, Func1, const QObject*, Func2, Qt::ConnectionType) [with Func1 = void (QObject::*)(QObject*); Func2 = TaskBar::addWindowToTaskbar(QWindow*)::<lambda()>]':
+taskbar.cpp:138:16:   required from here
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qobject.h:283:13: error: no type named 'type' in 'struct std::enable_if<false, QMetaObject::Connection>'
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qobject.h:314:13: note: candidate: 'template<class Func1, class Func2> static typename std::enable_if<(QtPrivate::FunctionPointer<Func2>::ArgumentCount == -1), QMetaObject::Connection>::type QObject::connect(const typename QtPrivate::FunctionPointer<Func>::Object*, Func1, Func2)'
+  314 |             connect(const typename QtPrivate::FunctionPointer<Func1>::Object *sender, Func1 signal, Func2 slot)
+      |             ^~~~~~~
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qobject.h:314:13: note:   template argument deduction/substitution failed:
+taskbar.cpp:138:16: note:   candidate expects 3 arguments, 4 provided
+  138 |         connect(window, &QObject::destroyed, this, [this, window]() {
+      |         ~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  139 |             openWindows.removeAll(window);
+      |             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  140 |             updateTaskbarItems();
+      |             ~~~~~~~~~~~~~~~~~~~~~
+  141 |         });
+      |         ~~      
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qobject.h:322:13: note: candidate: 'static typename std::enable_if<(QtPrivate::FunctionPointer<Func2>::ArgumentCount == -1), QMetaObject::Connection>::type QObject::connect(const typename QtPrivate::FunctionPointer<Func>::Object*, Func1, const QObject*, Func2, Qt::ConnectionType) [with Func1 = void (QObject::*)(QObject*); Func2 = TaskBar::addWindowToTaskbar(QWindow*)::<lambda()>; typename std::enable_if<(QtPrivate::FunctionPointer<Func2>::ArgumentCount == -1), QMetaObject::Connection>::type = QMetaObject::Connection; typename QtPrivate::FunctionPointer<Func>::Object = QObject]'
+  322 |             connect(const typename QtPrivate::FunctionPointer<Func1>::Object *sender, Func1 signal, const QObject *context, Func2 slot,
+      |             ^~~~~~~
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qobject.h:322:79: note:   no known conversion for argument 1 from 'QWindow*' to 'const QtPrivate::FunctionPointer<void (QObject::*)(QObject*)>::Object*' {aka 'const QObject*'}
+  322 |             connect(const typename QtPrivate::FunctionPointer<Func1>::Object *sender, Func1 signal, const QObject *context, Func2 slot,
+      |                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qobject.h:222:36: note: candidate: 'static QMetaObject::Connection QObject::connect(const QObject*, const char*, const QObject*, const char*, Qt::ConnectionType)'
+  222 |     static QMetaObject::Connection connect(const QObject *sender, const char *signal,
+      |                                    ^~~~~~~
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qobject.h:222:59: note:   no known conversion for argument 1 from 'QWindow*' to 'const QObject*'
+  222 |     static QMetaObject::Connection connect(const QObject *sender, const char *signal,
+      |                                            ~~~~~~~~~~~~~~~^~~~~~
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qobject.h:225:36: note: candidate: 'static QMetaObject::Connection QObject::connect(const QObject*, const QMetaMethod&, const QObject*, const QMetaMethod&, Qt::ConnectionType)'
+  225 |     static QMetaObject::Connection connect(const QObject *sender, const QMetaMethod &signal,
+      |                                    ^~~~~~~
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qobject.h:225:59: note:   no known conversion for argument 1 from 'QWindow*' to 'const QObject*'
+  225 |     static QMetaObject::Connection connect(const QObject *sender, const QMetaMethod &signal,
+      |                                            ~~~~~~~~~~~~~~~^~~~~~
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qobject.h:481:32: note: candidate: 'QMetaObject::Connection QObject::connect(const QObject*, const char*, const char*, Qt::ConnectionType) const'
+  481 | inline QMetaObject::Connection QObject::connect(const QObject *asender, const char *asignal,
+      |                                ^~~~~~~
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qobject.h:481:64: note:   no known conversion for argument 1 from 'QWindow*' to 'const QObject*'
+  481 | inline QMetaObject::Connection QObject::connect(const QObject *asender, const char *asignal,
+      |                                                 ~~~~~~~~~~~~~~~^~~~~~~
+taskbar.cpp: In member function 'void TaskBar::updateTaskbarItems()':
+taskbar.cpp:155:59: error: invalid use of incomplete type 'class QWindow'
+  155 |         QPushButton *windowButton = new QPushButton(window->title(), this);
+      |                                                           ^~
+In file included from ../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtWidgets/qwidget.h:44:
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtGui/qwindowdefs.h:54:7: note: forward declaration of 'class QWindow'
+   54 | class QWindow;
+      |       ^~~~~~~
+taskbar.cpp: In lambda function:
+taskbar.cpp:157:19: error: invalid use of incomplete type 'class QWindow'
+  157 |             window->setVisibility(QWindow::Windowed);
+      |                   ^~
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtGui/qwindowdefs.h:54:7: note: forward declaration of 'class QWindow'
+   54 | class QWindow;
+      |       ^~~~~~~
+taskbar.cpp:157:44: error: incomplete type 'QWindow' used in nested name specifier
+  157 |             window->setVisibility(QWindow::Windowed);
+      |                                            ^~~~~~~~
+taskbar.cpp:158:19: error: invalid use of incomplete type 'class QWindow'
+  158 |             window->requestActivate();
+      |                   ^~
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtGui/qwindowdefs.h:54:7: note: forward declaration of 'class QWindow'
+   54 | class QWindow;
+      |       ^~~~~~~
+taskbar.cpp: In member function 'void TaskBar::onLabelClickedExec(const QString&)':
+taskbar.cpp:249:19: warning: 'void QProcess::start(const QString&, QIODevice::OpenMode)' is deprecated: Use QProcess::start(const QString &program, const QStringList &arguments,OpenMode mode = ReadWrite) instead [-Wdeprecated-declarations]
+  249 |     process->start(execCommand);
+      |     ~~~~~~~~~~~~~~^~~~~~~~~~~~~
+In file included from ../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/QProcess:1,
+                 from taskbar.cpp:20:
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qprocess.h:168:10: note: declared here
+  168 |     void start(const QString &command, OpenMode mode = ReadWrite);
+      |          ^~~~~
+taskbar.cpp: In member function 'virtual bool TaskBar::eventFilter(QObject*, QEvent*)':
+taskbar.cpp:534:23: error: invalid use of incomplete type 'class QWindow'
+  534 |             if (window->windowState() & Qt::WindowMinimized) {
+      |                       ^~
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtGui/qwindowdefs.h:54:7: note: forward declaration of 'class QWindow'
+   54 | class QWindow;
+      |       ^~~~~~~
+In file included from ../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtGui/qwindowdefs.h:44:
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qobjectdefs.h: In instantiation of 'struct QtPrivate::HasQ_OBJECT_Macro<QWindow>':
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qobject.h:522:5:   required from 'T qobject_cast(QObject*) [with T = QWindow*]'
+taskbar.cpp:532:50:   required from here
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qobjectdefs.h:652:37: error: incomplete type 'QWindow' used in nested name specifier
+  652 |         enum { Value =  sizeof(test(&Object::qt_metacall)) == sizeof(int) };
+      |                                     ^~~~~~~~~~~~~~~~~~~~
+In file included from ../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtGui/qtguiglobal.h:43,
+                 from ../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtWidgets/qtwidgetsglobal.h:43,
+                 from ../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtWidgets/qwidget.h:43:
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qobject.h: In instantiation of 'T qobject_cast(QObject*) [with T = QWindow*]':
+taskbar.cpp:532:50:   required from here
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qglobal.h:121:63: error: static assertion failed: qobject_cast requires the type to have a Q_OBJECT macro
+  121 | #  define Q_STATIC_ASSERT_X(Condition, Message) static_assert(bool(Condition), Message)
+      |                                                               ^~~~~~~~~~~~~~~
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qobject.h:522:5: note: in expansion of macro 'Q_STATIC_ASSERT_X'
+  522 |     Q_STATIC_ASSERT_X(QtPrivate::HasQ_OBJECT_Macro<ObjType>::Value,
+      |     ^~~~~~~~~~~~~~~~~
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qglobal.h:121:63: note: 'false' evaluates to false
+  121 | #  define Q_STATIC_ASSERT_X(Condition, Message) static_assert(bool(Condition), Message)
+      |                                                               ^~~~~~~~~~~~~~~
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qobject.h:522:5: note: in expansion of macro 'Q_STATIC_ASSERT_X'
+  522 |     Q_STATIC_ASSERT_X(QtPrivate::HasQ_OBJECT_Macro<ObjType>::Value,
+      |     ^~~~~~~~~~~~~~~~~
+../../../../linuxbrew/.linuxbrew/Cellar/qt@5/5.15.13_1/include/QtCore/qobject.h:524:53: error: incomplete type 'ObjType' {aka 'QWindow'} used in nested name specifier
+  524 |     return static_cast<T>(ObjType::staticMetaObject.cast(object));
+      |                                    ~~~~~~~~~~~~~~~~~^~~~
+make: *** [Makefile:2458: taskbar.o] Error 1
